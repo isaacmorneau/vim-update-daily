@@ -27,7 +27,8 @@ function! s:checkupdates()
     if empty(glob(g:update_file, 1))
         call s:run_update()
     else
-        let s:savedtime = readfile(glob(g:update_file, 1)):0
+        let s:savedtimes = readfile(glob(g:update_file, 1))
+        let s:savedtime = s:savedtimes[0]
         if (s:savedtime + 0) < s:today
             call s:run_update()
         endif
