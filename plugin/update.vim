@@ -3,7 +3,7 @@
 " Version: 1.0
 " defaults:
 " g:update_file '~/.local/share/nvim/lastupdate' for the update file
-" g:update_daily 'PluginUpgrade | PluginUpdate' for the update command to run
+" g:update_daily 'PlugUpgrade | PlugUpdate' for the update command to run
 
 if exists('g:loaded_update_daily')
     finish
@@ -20,7 +20,7 @@ function! s:checkupdates()
         let g:update_file = '~/.local/share/nvim/lastupdate'
     endif
     if !exists('g:update_daily')
-        let g:update_daily = 'PluginUpgrade | PluginUpdate'
+        let g:update_daily = 'PlugUpgrade | PlugUpdate'
     endif
     "update once per day
     let s:today = strftime("%Y%m%d") + 0
