@@ -27,7 +27,7 @@ function! update#daily(...)
         echo 'unknown extra arguments to daily'
     endif
 
-    s:checkupdates()
+    call s:checkupdates()
 endfunction
 
 function! s:run_update()
@@ -39,11 +39,11 @@ function! s:checkupdates()
     "update once per day
     let s:today = strftime("%Y%m%d") + 0
     if empty(glob(s:update_file, 1))
-        s:run_update()
+        call s:run_update()
     else
         let s:savedtime = readfile(glob(s:lastupdate, 1)):0
         if (s:savedtime + 0) < s:today
-            s:run_update()
+            call s:run_update()
         endif
     endif
 endfunction
