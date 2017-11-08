@@ -33,5 +33,5 @@ function! s:checkupdates()
         endif
     endif
 endfunction
-autocmd VimEnter * s:checkupdates
+autocmd VimEnter * call s:checkupdates()
 
