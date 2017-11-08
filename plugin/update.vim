@@ -1,4 +1,4 @@
-" update-daily.vim
+" update.vim
 " Author: Isaac Morneau
 " Version: 1.0
 
@@ -10,7 +10,7 @@ let g:loaded_update_daily = 1
 " defaults to '~/.local/share/nvim/lastupdate' for the update file
 " and 'PluginUpgrade | PluginUpdate' for the update command to run
 " each function can be overriden
-function! Daily(...)
+function! g:UpdateDaily(...)
     if a:0 > 0
         let s:update_file = a:1
     else
@@ -47,4 +47,3 @@ function! s:checkupdates()
         endif
     endif
 endfunction
-
