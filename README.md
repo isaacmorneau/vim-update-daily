@@ -3,7 +3,7 @@ A little plugin to allow easy plugin updates
 
 This was created to automatically update [vim-plug](https://github.com/junegunn/vim-plug) once a day to keep those great plugins up to date.
 
-#Configuration
+# Configuration
 There are only two variables for how it should update right now `g:update_file` and `g:update_daily`.
 
 The first handles where to store the file to log when the last update happened while the second is what command to run.
