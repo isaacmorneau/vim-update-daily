@@ -1,9 +1,10 @@
 " update.vim
 " Author: Isaac Morneau
-" Version: 1.0
+" Version: 1.1
 " defaults:
 " g:update_file '~/.local/share/nvim/lastupdate' for the update file
 " g:update_daily 'PlugUpgrade | PlugUpdate' for the update command to run
+" g:update_noargs 0 for the check for arguments
 
 if exists('g:loaded_update_daily')
     finish
@@ -16,8 +17,12 @@ function! s:run_update()
     "what it does is only run the update if vim or nvim was provided no
     "arguments. this prevents the annoying update when you are trying to
     "quickly edit a file
+    if !exists('g:update_noargs')
+        let g:update_noargs = 0
+    endif
+
     let s:args = split(system("ps -o command= -p ".getpid()))
-    if len(s:args) == 1
+    if !g:update_noargs || len(s:args) == 1
         execute 'silent !echo ' . s:today . ' > ' . g:update_file
         execute 'autocmd VimEnter * ' . g:update_daily
     endif
