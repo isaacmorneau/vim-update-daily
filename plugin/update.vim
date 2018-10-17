@@ -11,8 +11,16 @@ endif
 let g:loaded_update_daily = 1
 
 function! s:run_update()
-    execute 'silent !echo ' . s:today . ' > ' . g:update_file
-    execute 'autocmd VimEnter * ' . g:update_daily
+    "theres no way to do this from within vimscript nicely and it wont work on
+    "windows
+    "what it does is only run the update if vim or nvim was provided no
+    "arguments. this prevents the annoying update when you are trying to
+    "quickly edit a file
+    let s:args = split(system("ps -o command= -p ".getpid()))
+    if len(s:args) == 1
+        execute 'silent !echo ' . s:today . ' > ' . g:update_file
+        execute 'autocmd VimEnter * ' . g:update_daily
+    endif
 endfunction
 
 function! s:checkupdates()
