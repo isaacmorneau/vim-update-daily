@@ -4,7 +4,7 @@
 " defaults:
 " g:update_file '~/.local/share/nvim/lastupdate' for the update file
 " g:update_daily 'PlugUpgrade | PlugUpdate' for the update command to run
-" g:update_noargs 0 for the check for arguments
+" g:update_open_with_args for the check for arguments
 
 if exists('g:loaded_update_daily')
     finish
@@ -21,8 +21,10 @@ function! s:run_update()
         let g:update_noargs = 0
     endif
 
-    let s:args = split(system("ps -o command= -p ".getpid()))
-    if !g:update_noargs || len(s:args) == 1
+    if !exists('g:update_open_with_args')
+        let g:update_open_with_args = 0
+    endif
+    if g:update_open_with_args || len(split(system("ps -o command= -p ".getpid()))) == 1
         execute 'silent !echo ' . s:today . ' > ' . g:update_file
         execute 'autocmd VimEnter * ' . g:update_daily
     endif
